@@ -3,10 +3,9 @@ import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
 import { Icon, withBadge } from "react-native-elements";
 import { colors, parameters } from "../global/styles";
 
-export default function HomeHeader() {
+export default function HomeHeader({navigation}) {
 
     const BadgeIcon = withBadge(0)(Icon)
-
     return(
         <View style={styles.header}>
 
@@ -16,6 +15,7 @@ export default function HomeHeader() {
                     name = "menu"
                     color={colors.cardBackground}
                     size={32}
+                    onPress={() => navigation.toggleDrawer()}
                 />
             </View>
 
