@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet, FlatList, TouchableWithoutFeedback, Modal, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, Keyboard, TouchableWithoutFeedback, Modal, TextInput, TouchableOpacity } from "react-native";
 import { colors } from "../global/styles";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 import { Icon } from "react-native-elements";
 import { filterData } from "../global/Data";
+import filter from "lodash/filter"
 
 export default function SearchComponent() {
 
@@ -13,6 +14,17 @@ export default function SearchComponent() {
     const [modalVisible, setModalVisible] = useState(false)
     const [textInputFocused, setTextInputFocused] = useState(true)
     const textInput = useRef(0)
+
+    const contains = ({ name }, query) => {
+        return name.toLowerCase().includes(query.toLowerCase());
+    };
+
+    const handleSearch = text => {
+        const dataS = filter(filterData, userSearch => {
+            return contains(userSearch, text);
+        });
+        setData([...dataS]);
+    };
 
     return(
         <View style = {{alignItems: 'center'}}>
@@ -40,13 +52,16 @@ export default function SearchComponent() {
                 <View style = {styles.modal}>
                     <View style = {styles.view1}>
                         <View style = {styles.textInput}>
-                            <Animatable.View>
+                            <Animatable.View
+                                animation={textInputFocused ? "fadeInRight" : "fadeInLeft"}
+                                duration={400}
+                            >
                                 <Icon 
                                     name = {textInputFocused ? "arrow-back" : "search"}
                                     onPress = {() => {
                                         if (textInputFocused)
                                             setModalVisible(false)
-                                            setTextInputFocused(false)  
+                                            setTextInputFocused(true)  
                                     }}
                                     style = {styles.icon2}
                                     type = "material"
@@ -59,9 +74,22 @@ export default function SearchComponent() {
                                 placeholder = ""
                                 autoFocus = {false}
                                 ref = {textInput}
+
+                                onFocus = {() => {
+                                    setTextInputFocused(true)
+                                }}
+
+                                onBlur={() => {
+                                    setTextInputFocused(false)
+                                }}
+
+                                onChangeText={handleSearch}
                             />
 
-                            <Animatable.View>
+                            <Animatable.View
+                                animation={textInputFocused ? "fadeInLeft" : ""}
+                                duration={400}    
+                            >
                                 <Icon 
                                     name = {textInputFocused ? "cancel" : null}
                                     iconStyle = {{color: colors.grey5}}
