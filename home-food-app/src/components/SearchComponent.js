@@ -9,7 +9,7 @@ import filter from "lodash/filter"
 
 export default function SearchComponent() {
 
-    const naviation = useNavigation()
+    const navigation = useNavigation()
     const [data, setData] = useState([...filterData])
     const [modalVisible, setModalVisible] = useState(false)
     const [textInputFocused, setTextInputFocused] = useState(true)
@@ -110,7 +110,7 @@ export default function SearchComponent() {
                             <TouchableOpacity
                                 onPress={() => {
                                     Keyboard.dismiss
-                                    navigation.navigate("RestaurantSeacrhScreen", {item: item.name})
+                                    navigation.navigate("SearchResultScreen", {item: item.name})
                                     setModalVisible(false)
                                     setTextInputFocused(true)
                                 }}
