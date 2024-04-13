@@ -3,28 +3,39 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image, FlatList, TouchableWithoutFeedback, ImageBackground } from "react-native";
 import SearchScreen from "../screens/SearchScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
+import RestaurantHomeScreen from "../screens/RestaurantHomeScreen";
 
 const ClientSearch = createNativeStackNavigator()
 
 function ClientStack() {
-    
-    return(
+
+    return (
         <ClientSearch.Navigator>
 
-            <ClientSearch.Screen 
-                name = "SearchScreen"
-                component = {SearchScreen}
-                options = {
+            <ClientSearch.Screen
+                name="SearchScreen"
+                component={SearchScreen}
+                options={
                     () => ({
                         headerShown: false
                     })
                 }
             />
 
-            <ClientSearch.Screen 
-                name = "SearchResultScreen"
-                component = {SearchResultScreen}
-                options = {
+            <ClientSearch.Screen
+                name="SearchResultScreen"
+                component={SearchResultScreen}
+                options={
+                    () => ({
+                        headerShown: false
+                    })
+                }
+            />
+
+            <ClientSearch.Screen
+                name="RestaurantHomeScreen"
+                component={RestaurantHomeScreen}
+                options={
                     () => ({
                         headerShown: false
                     })
