@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ImageBackground } from "react-native";
-import {Icon} from 'react-native-elements'
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ImageBackground, FlatList } from "react-native";
+import { Icon } from 'react-native-elements'
 import { colors } from "../global/styles";
+import ProductCard from "./ProductCard";
 
 const SCREEN_WIDTH = Dimensions.get("window").width
 
@@ -48,9 +49,8 @@ export default function SearchResultCard({
                                 type="material"
                                 color={colors.CardComment}
                                 size={18}
-                                iconStyle={{ marginTop: 3}}
+                                iconStyle={{ marginTop: 3 }}
                             />
-
                             <Text style={styles.view5}>{farAway}Min</Text>
                         </View>
                         <View style={{ flex: 9 }}>
@@ -58,6 +58,23 @@ export default function SearchResultCard({
                         </View>
                     </View>
                 </View>
+            </View>
+
+            <View style={{ marginTop: 5, paddingBottom: 20 }}>
+
+                <FlatList
+                    style={{ backgroundColor: colors.cardBackground }}
+                    data={productData}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) => (
+                        <ProductCard
+                            image={item.images}
+                            productName={item.name}
+                            price={item.price}
+                        />
+                    )}
+                    horizontal={true}
+                />
             </View>
         </View>
     )

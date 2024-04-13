@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, FlatList } from "react-native";
 import { colors } from "../global/styles";
 import SearchResultCard from "../components/SearchResultCard";
 import { restaurantData } from "../global/Data";
@@ -10,17 +10,34 @@ export default function SearchResultScreen({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.listHeader}>{restaurantData.length} Search Result for {route.params.item}</Text>
+            <View>
+                <FlatList
+                    style={{ backgroundColor: colors.cardbackground }}
+                    data={restaurantData}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) => (
 
-            <SearchResultCard
-                sceenWidth={SCREEN_WIDTH}
-                images={restaurantData[0].images}
-                averageReview={restaurantData[0].averageReview}
-                numberOfReview={restaurantData[0].numberOfReviews}
-                restaurantName={restaurantData[0].restaurantName}
-                farAway={restaurantData[0].farAway}
-                businessAddress={restaurantData[0].businessAddress}
-            />
+                        <SearchResultCard
+                            screenWidth={SCREEN_WIDTH}
+                            images={item.images}
+                            averageReview={item.averageReview}
+                            numberOfReview={item.numberOfReview}
+                            restaurantName={item.restaurantName}
+                            farAway={item.farAway}
+                            businessAddress={item.businessAddress}
+                            productData={item.productData}
+                            //OnPressRestaurantCard={() => { navigation.navigate("RestaurantHomeScreen", { id: index, restaurant: item.restaurantName }) }}
+                        />
+
+                    )}
+                    ListHeaderComponent={
+                        <View>
+                            <Text style={styles.listHeader}>{restaurantData.length} Result for {route.params.item}</Text>
+                        </View>
+                    }
+                    showsVerticalScrollIndicator={false}
+                />
+            </View>
         </View>
     )
 }
