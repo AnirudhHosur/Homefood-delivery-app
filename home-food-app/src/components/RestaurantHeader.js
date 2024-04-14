@@ -43,7 +43,6 @@ export default function RestaurantHeader({ navigation, id }) {
             <ImageBackground
                 style={styles.container}
                 source={{ uri: restaurantData[0].images }}
-                imageStyle={styles.image}
             >
 
                 <View style={styles.view1}>

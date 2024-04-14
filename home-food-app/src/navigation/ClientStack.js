@@ -1,13 +1,31 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { View, Text, StyleSheet, Dimensions, Image, FlatList, TouchableWithoutFeedback, ImageBackground } from "react-native";
 import SearchScreen from "../screens/SearchScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import RestaurantHomeScreen from "../screens/RestaurantHomeScreen";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import MenuProductScreen from "../screens/MenuProductScreen";
 
 const ClientSearch = createNativeStackNavigator()
 
-function ClientStack() {
+function ClientStack({ navigation, route }) {
+
+    useLayoutEffect(() => {
+        const routeName = getFocusedRouteNameFromRoute(route)
+
+        if (routeName === "RestaurantHomeScreen" || "MenuProductScreen") {
+            navigation.setOptions({
+                tabBarStyle: { display: 'none' }
+            });
+        } 
+        // else {
+        //     navigation.setOptions({
+        //         tabBarStyle: { display: 'flex' }
+        //     });
+        // }
+
+    }, [navigation, route])
 
     return (
         <ClientSearch.Navigator>
@@ -35,6 +53,16 @@ function ClientStack() {
             <ClientSearch.Screen
                 name="RestaurantHomeScreen"
                 component={RestaurantHomeScreen}
+                options={
+                    () => ({
+                        headerShown: false
+                    })
+                }
+            />
+
+            <ClientSearch.Screen
+                name="MenuProductScreen"
+                component={MenuProductScreen}
                 options={
                     () => ({
                         headerShown: false
