@@ -6,34 +6,44 @@ import HomeScreen from "../screens/HomeScreen";
 import RootClientTabs from "./ClientTabs";
 import RestaurantsMapScreen from "../screens/RestaurantsMapScreen";
 import DrawerNavigator from "./DrawerNavigator";
+import SignUpScreen from "../screens/authScreens/SignUpScreen";
 
 const Auth = createNativeStackNavigator();
 
-export default function AuthStack () {
-    return(
+export default function AuthStack() {
+    return (
         <Auth.Navigator>
             <Auth.Screen
-                name = "SignInWelcomeScreen"
-                component = {SignInWelcomeScreen}
-                options = {{
+                name="SignInWelcomeScreen"
+                component={SignInWelcomeScreen}
+                options={{
                     headerShown: false,
                     //...TransitionPresets.RevealFromBottomAndroid
                 }}
             />
 
             <Auth.Screen
-                name = "SignInScreen"
-                component = {SignInScreen}
-                options = {{
+                name="SignInScreen"
+                component={SignInScreen}
+                options={{
                     headerShown: false,
                     //...TransitionPresets.RevealFromBottomAndroid
                 }}
             />
 
             <Auth.Screen
-                name = "DrawerNavigator"
-                component = {DrawerNavigator}
-                options = {{
+                name="SignUpScreen"
+                component={SignUpScreen}
+                options={{
+                    headerShown: false,
+                    //...TransitionPresets.RevealFromBottomAndroid
+                }}
+            />
+
+            <Auth.Screen
+                name="DrawerNavigator"
+                component={DrawerNavigator}
+                options={{
                     headerShown: false,
                     //...TransitionPresets.RevealFromBottomAndroid
                 }}
@@ -49,9 +59,9 @@ export default function AuthStack () {
             /> */}
 
             <Auth.Screen
-                name = "RestaurantsMapScreen"
-                component = {RestaurantsMapScreen}
-                options = {{
+                name="RestaurantsMapScreen"
+                component={RestaurantsMapScreen}
+                options={{
                     headerShown: false,
                     //...TransitionPresets.RevealFromBottomAndroid
                 }}

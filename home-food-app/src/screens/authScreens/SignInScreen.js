@@ -9,26 +9,26 @@ import { Formik } from 'formik';
 import auth from "../../../firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from '@firebase/auth';
 
-async function signIn(data) {
-    try {
-        const { email, password } = data;
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        if (user) {
-            console.log("User signed in successfully!", user);
-            Alert.alert("User signed in successfully!");
-        }
-    } catch (error) {
-        console.log("Authentication error:", error);
-        Alert.alert("Authentication Error", error.message);
-    }
-};
-
 export default function SignInScreen({ navigation }) {
 
     const [TextInput2Focussed, setTextInput2Focusses] = useState(false)
     const textInput1 = useRef(1)
     const textInput2 = useRef(2)
+
+    async function signIn(data) {
+        try {
+            const { email, password } = data;
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            if (user) {
+                console.log("User signed in successfully!", user);
+                Alert.alert("User signed in successfully!");
+            }
+        } catch (error) {
+            console.log("Authentication error:", error);
+            Alert.alert("Authentication Error", error.message);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -144,6 +144,9 @@ export default function SignInScreen({ navigation }) {
                     title="Create an account"
                     buttonStyle={styles.createButton}
                     titleStyle={styles.createButtonTitle}
+                    onPress={() => {
+                        navigation.navigate("SignUpScreen")
+                    }}
                 />
             </View>
         </View>
