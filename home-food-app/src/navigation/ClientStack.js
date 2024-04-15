@@ -14,16 +14,16 @@ function ClientStack({ navigation, route }) {
     useLayoutEffect(() => {
         const routeName = getFocusedRouteNameFromRoute(route)
 
-        if (routeName === "RestaurantHomeScreen" || "MenuProductScreen") {
+        if (routeName === "RestaurantHomeScreen" || routeName === "MenuProductScreen") {
             navigation.setOptions({
                 tabBarStyle: { display: 'none' }
             });
         } 
-        // else {
-        //     navigation.setOptions({
-        //         tabBarStyle: { display: 'flex' }
-        //     });
-        // }
+        else {
+            navigation.setOptions({
+                tabBarStyle: { display: 'flex' }
+            });
+        }
 
     }, [navigation, route])
 
