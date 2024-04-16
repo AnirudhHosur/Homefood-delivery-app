@@ -10,7 +10,7 @@ import { Route1, Route2, Route3, Route4, Route5, Route6, Route7, Route8 } from "
 
 const SCREEN_WIDTH = Dimensions.get("window").width
 
-export default function MenuProductScreen({navigation, route}) {
+export default function MenuProductScreen({ navigation, route }) {
 
     const [routes] = useState(menu)
     const [index, setIndex] = useState(0)
@@ -29,7 +29,7 @@ export default function MenuProductScreen({navigation, route}) {
     const renderScene = ({ route }) => {
         switch (route.key) {
             case 1:
-                return <Route1 name={navigation} />
+                return <Route1 navigation={navigation} />
             case 2:
                 return <Route2 name={navigation} />
             case 3:
