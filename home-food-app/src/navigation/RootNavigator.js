@@ -11,11 +11,7 @@ export default function RootNavigator() {
     return (
         <NavigationContainer>
             {
-                signedIn.userToken !== 'signed-in' ? (
-                    <AuthStack />
-                ) : (
-                    <AppStack />
-                )
+                signedIn.userToken === null  ?  <AuthStack />: <AppStack />
             }
         </NavigationContainer>
     )

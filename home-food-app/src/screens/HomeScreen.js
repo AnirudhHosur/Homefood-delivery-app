@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions } from "react-native";
 import { Icon } from "react-native-elements";
 import HomeHeader from "../components/HomeHeader";
-import Countdown from "react-native-countdown-component";
+//import Countdown from "react-native-countdown-component";
 import { colors } from "../global/styles";
 import { filterData, restaurantData } from "../global/Data";
 import FoodCard from "../components/FoodCard";
@@ -112,7 +112,7 @@ export default function HomeScreen({navigation}) {
             </View>
             
             <View>
-                <View style={{flexDirection: 'row', alignItems: 'center', paddingTop: 10}}>
+                {/* <View style={{flexDirection: 'row', alignItems: 'center', paddingTop: 10}}>
                     <Text style = {styles.options}>Options changing in </Text>
                     <Countdown 
                         until = {3600}
@@ -122,13 +122,13 @@ export default function HomeScreen({navigation}) {
                         timeToShow = {['M', 'S']}
                         timeLabels = {{m: 'Min', s: 'Sec'}}
                     />
-                </View>
+                </View> */}
 
                 <FlatList
                     style = {{marginTop:10, marginBottom: 10}}
                     horizontal = {true}
                     data= {restaurantData}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={(item) => item.id.toString()}
                     showsHorizontalScrollIndicator = {false}
                     renderItem={({item}) => (
                         <View style = {{marginRight: 5}}>
